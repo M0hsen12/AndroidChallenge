@@ -1,5 +1,6 @@
 package com.androidChallenge.di.modules
 
+import com.androidChallenge.view.activities.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,8 +9,8 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityInjectorsModule {
 
 
-//    @ContributesAndroidInjector
-//    abstract fun driversListActivityInjector(): DriversListActivity
+    @ContributesAndroidInjector
+    abstract fun mainActivityInjector(): MainActivity
 
 
 }

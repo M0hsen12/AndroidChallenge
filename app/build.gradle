@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -64,6 +67,11 @@ dependencies {
 
     //ui
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // room
+    implementation  "androidx.room:room-runtime:2.1.0"
+    implementation  "androidx.room:room-rxjava2:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
 
     //tests
     testImplementation 'junit:junit:4.13.2'

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/user_flow_graph.xml"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.androidChallenge.view.activities.MainActivity"
+        android:label="MainActivity" />
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.androidChallenge.view.fragments.login.FragmentLogin"
+        android:label="FragmentLogin" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentSignup"
+            app:destination="@id/fragmentSignup" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="com.androidChallenge.view.fragments.signup.FragmentSignup"
+        android:label="FragmentSignup" >
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetails"
+        android:name="com.androidChallenge.view.fragments.details.FragmentDetails"
+        android:label="FragmentDetails" />
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.androidChallenge.view.fragments.home.FragmentHome"
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDetails"
+            app:destination="@id/fragmentDetails" />
+    </fragment>
+</navigation>

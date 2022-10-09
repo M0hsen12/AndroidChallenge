@@ -41,7 +41,7 @@ data class HitsItem(
     @SerializedName("pageURL")
     val pageURL: String = "",
     @SerializedName("id")
-    val id: Int = 0,
+    var id: Int = 0,
     @SerializedName("imageSize")
     val imageSize: Int = 0,
     @SerializedName("webformatWidth")

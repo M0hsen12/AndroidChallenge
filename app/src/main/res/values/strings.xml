@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="please_enter_your_mail">please enter your mail</string>
+    <string name="please_enter_your_password">please enter your password</string>
+    <string name="submit">Submit</string>
+    <string name="invalidEmail">email is not valid</string>
+    <string name="invalidAge">age is not valid, age must be between 18 to 99 </string>
+    <string name="invalidPassword">"password is not valid, pass must be 6 to 12 char "</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="please_enter_your_age">please enter your age</string>
+    <string name="wrongPassword">password is not correct</string>
 </resources>

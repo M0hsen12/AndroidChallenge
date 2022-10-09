@@ -4,6 +4,7 @@ import android.content.Context
 import com.androidChallenge.App
 import com.androidChallenge.di.modules.ActivityInjectorsModule
 import com.androidChallenge.di.modules.AppModule
+import com.androidChallenge.di.modules.FragmentBuildersModule
 import com.androidChallenge.di.modules.RepositoryModule
 import dagger.BindsInstance
 import dagger.Component
@@ -18,6 +19,7 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ActivityInjectorsModule::class,
         RepositoryModule::class,
+        FragmentBuildersModule::class,
         AppModule::class
     ]
 )

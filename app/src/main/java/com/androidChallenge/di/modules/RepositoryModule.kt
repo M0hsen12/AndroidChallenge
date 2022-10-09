@@ -6,6 +6,8 @@ import com.androidChallenge.repository.activities.MainActivityRepository
 import com.androidChallenge.repository.activities.MainActivityRepositoryImpl
 import com.androidChallenge.repository.fragments.details.DetailsRepository
 import com.androidChallenge.repository.fragments.details.DetailsRepositoryImpl
+import com.androidChallenge.repository.fragments.home.HomeRepository
+import com.androidChallenge.repository.fragments.home.HomeRepositoryImpl
 import com.androidChallenge.repository.fragments.login.LoginRepository
 import com.androidChallenge.repository.fragments.login.LoginRepositoryImpl
 import com.androidChallenge.repository.fragments.signup.SignupRepository
@@ -37,5 +39,10 @@ class RepositoryModule {
     @Singleton
     fun provideSignupRepository(networkManager: NetworkManager,databaseManager: DatabaseManager): SignupRepository {
         return SignupRepositoryImpl(networkManager,databaseManager)
+    }
+    @Provides
+    @Singleton
+    fun provideHomeRepository(networkManager: NetworkManager,databaseManager: DatabaseManager): HomeRepository {
+        return HomeRepositoryImpl(networkManager,databaseManager)
     }
 }

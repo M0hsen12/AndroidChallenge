@@ -8,18 +8,18 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "users")
 class UserEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long? = null,
 
-    @ColumnInfo(name = "Email")
-    var name: String? = null,
+    @ColumnInfo(name = "email")
+    var email: String? = null,
 
-    @ColumnInfo(name = "Password")
-    var appLinkIntentUri: String? = null,
+    @ColumnInfo(name = "password")
+    var password: String? = null,
 
-    @ColumnInfo(name = "Age")
-    var description: Int? = null
+    @ColumnInfo(name = "age")
+    var age: Int? = null
 
 )
 

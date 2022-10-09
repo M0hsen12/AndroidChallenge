@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.fragment.findNavController
 import dagger.android.support.DaggerFragment
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFragment(){
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFragment() {
 
     lateinit var binding: T
 
@@ -21,12 +22,18 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
     @LayoutRes
     abstract fun getLayoutId(): Int
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         return binding.root
     }
 
-
+    fun navigateUserToHomePage(resId: Int) {
+        findNavController().navigate(resId)
+    }
 
 
 }

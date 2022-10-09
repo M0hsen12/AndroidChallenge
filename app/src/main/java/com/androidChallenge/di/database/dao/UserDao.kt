@@ -10,10 +10,13 @@ import io.reactivex.Single
 abstract class UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(programEntity: UserEntity): Long
+    abstract fun insert(programEntity: UserEntity): Single<Long>
 
     @Query("SELECT * FROM users WHERE `id` = :id LIMIT 1")
     abstract fun findUserById(id: Long?): UserEntity?
+
+    @Query("SELECT * FROM users WHERE `email` = :email LIMIT 1")
+    abstract fun findUserByEmail(email: String): Single<UserEntity>
 
     @Query("DELETE FROM users")
     abstract fun deleteAll()
@@ -22,6 +25,6 @@ abstract class UserDao {
     abstract fun delete(id: Long)
 
     @Query("SELECT * FROM users")
-    abstract fun findAll(): List<UserEntity>
+    abstract fun findAll(): Single<List<UserEntity>>
 }
 

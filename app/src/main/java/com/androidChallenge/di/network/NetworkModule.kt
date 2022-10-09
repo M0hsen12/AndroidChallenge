@@ -39,7 +39,7 @@ class NetworkModule {
         client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("BuildConfig.BASE_URL")
+            .baseUrl("Https://google.com")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

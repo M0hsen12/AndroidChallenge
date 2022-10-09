@@ -90,7 +90,6 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() 
             endlessHandlerMyList =
                 object : EndlessRecyclerOnScrollListener() {
                     override fun onLoadMore(currentPage: Int) {
-                        Log.e("TAG", "onLoadMore: $currentPage" )
                         progressDialog.show()
                         viewModel?.nextPageImage(currentPage)
                     }

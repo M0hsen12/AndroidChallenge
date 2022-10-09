@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/user_flow_graph.xml"
-    app:startDestination="@id/fragmentLogin">
+    app:startDestination="@id/fragmentHomeDirection">
 
     <fragment
         android:id="@+id/fragmentLogin"
@@ -37,8 +37,5 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentDetails"
             app:destination="@id/fragmentDetails" />
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
     </fragment>
 </navigation>

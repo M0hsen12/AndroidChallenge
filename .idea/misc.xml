@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/testProject/360VUZ/app/src/main/res/drawable/bg_circle_red.xml" value="0.2745" />
+        <entry key="..\:/testProject/360VUZ/app/src/main/res/drawable/bg_home_rv_item.xml" value="0.2745" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/drawable/bg_login_et.xml" value="0.2745" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/activity_main.xml" value="0.3015625" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/fragment_details.xml" value="0.3015625" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/fragment_home.xml" value="0.3015625" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/fragment_signup.xml" value="0.3015625" />
+        <entry key="..\:/testProject/360VUZ/app/src/main/res/layout/item_image.xml" value="0.3229166666666667" />
       </map>
     </option>
   </component>

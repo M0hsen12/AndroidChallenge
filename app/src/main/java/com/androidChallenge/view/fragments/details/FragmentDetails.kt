@@ -2,6 +2,7 @@ package com.androidChallenge.view.fragments.details
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,11 @@ import com.androidChallenge.di.modules.BindModule
 import com.androidChallenge.di.viewModelInjection.InjectionViewModelProvider
 import com.androidChallenge.view.base.BaseFragment
 import com.androidChallenge.viewModel.fragments.details.FragmentDetailsViewModel
+import com.androidChallenge.viewModel.fragments.home.FragmentHomeViewModel
 import javax.inject.Inject
+
 @BindModule
-class FragmentDetails : BaseFragment<FragmentDetailsBinding,FragmentDetailsViewModel>(){
+class FragmentDetails : BaseFragment<FragmentDetailsBinding, FragmentDetailsViewModel>() {
 
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<FragmentDetailsViewModel>
@@ -23,12 +26,14 @@ class FragmentDetails : BaseFragment<FragmentDetailsBinding,FragmentDetailsViewM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = mViewModelFactoryActivity.get(this, FragmentDetailsViewModel::class)
+        val a = arguments?.getString("MYASS")
+        Log.e("TAG", "onViewCreated: $a")
     }
 
 
-
     companion object {
+        const val ONCLICK_KEY_BUNDLE = "keyBundle"
         fun newInstance() = FragmentDetails()
     }
 

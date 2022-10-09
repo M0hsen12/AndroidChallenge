@@ -2,6 +2,7 @@ package com.androidChallenge.di.network
 
 
 import android.content.Context
+import com.androidChallenge.BuildConfig
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -39,7 +40,7 @@ class NetworkModule {
         client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("Https://google.com")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

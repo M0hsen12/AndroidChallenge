@@ -62,8 +62,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() 
     private fun navigateUserToDetailPage(it: HitsItem) {
 
         val bundle = Bundle()
-        bundle.putInt(ONCLICK_KEY_BUNDLE,it.id)
-        findNavController().navigate(R.id.action_fragmentHome_to_fragmentDetails,bundle)
+        bundle.putParcelable(ONCLICK_KEY_BUNDLE, it)
+        findNavController().navigate(R.id.action_fragmentHome_to_fragmentDetails, bundle)
     }
 
     private fun initUI() {

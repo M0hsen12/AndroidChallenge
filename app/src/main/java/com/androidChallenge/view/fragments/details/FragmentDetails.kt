@@ -11,9 +11,11 @@ import com.androidChallenge.R
 import com.androidChallenge.databinding.FragmentDetailsBinding
 import com.androidChallenge.di.modules.BindModule
 import com.androidChallenge.di.viewModelInjection.InjectionViewModelProvider
+import com.androidChallenge.models.images.HitsItem
 import com.androidChallenge.view.base.BaseFragment
 import com.androidChallenge.viewModel.fragments.details.FragmentDetailsViewModel
 import com.androidChallenge.viewModel.fragments.home.FragmentHomeViewModel
+import com.bumptech.glide.Glide
 import javax.inject.Inject
 
 @BindModule
@@ -22,13 +24,19 @@ class FragmentDetails : BaseFragment<FragmentDetailsBinding, FragmentDetailsView
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<FragmentDetailsViewModel>
     override fun getLayoutId() = R.layout.fragment_details
-
+    lateinit var imageItem: HitsItem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initUI()
+
+    }
+
+    private fun initUI() {
         viewModel = mViewModelFactoryActivity.get(this, FragmentDetailsViewModel::class)
-        val a = arguments?.getString("MYASS")
-        Log.e("TAG", "onViewCreated: $a")
+        imageItem = arguments?.getParcelable(ONCLICK_KEY_BUNDLE) ?: HitsItem()
+        binding.item = imageItem
+        Glide.with(this).load(imageItem.largeImageURL).into(binding.detailsImage)
     }
 
 

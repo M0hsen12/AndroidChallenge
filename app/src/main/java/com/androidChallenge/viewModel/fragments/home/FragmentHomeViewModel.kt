@@ -60,7 +60,7 @@ class FragmentHomeViewModel @Inject constructor(
 
     companion object {
         const val FIRST_PAGE = 1
-        const val IMAGE_PER_PAGE = 25
+        const val IMAGE_PER_PAGE = 22
         const val JSON_PRETTY = "true"
         const val IMAGE_TYPE = "photo"
         const val IMAGE_QUERY = "image"

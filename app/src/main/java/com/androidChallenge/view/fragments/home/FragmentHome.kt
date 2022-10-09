@@ -1,5 +1,6 @@
 package com.androidChallenge.view.fragments.home
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,20 +12,28 @@ import com.androidChallenge.di.modules.BindModule
 import com.androidChallenge.di.viewModelInjection.InjectionViewModelProvider
 import com.androidChallenge.models.images.HitsItem
 import com.androidChallenge.models.images.Image
+import com.androidChallenge.util.EndlessRecyclerOnScrollListener
+import com.androidChallenge.util.materialSimpleProgressDialog
 import com.androidChallenge.view.adapter.ImagesAdapter
 import com.androidChallenge.view.base.BaseFragment
 import com.androidChallenge.view.fragments.details.FragmentDetails.Companion.ONCLICK_KEY_BUNDLE
 import com.androidChallenge.viewModel.fragments.home.FragmentHomeViewModel
 import com.androidChallenge.viewModel.fragments.home.FragmentHomeViewModel.Companion.FIRST_PAGE
+import java.util.ArrayList
 import javax.inject.Inject
 
 @BindModule
 class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() {
 
 
+    override fun getLayoutId() = R.layout.fragment_home
+
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<FragmentHomeViewModel>
-    override fun getLayoutId() = R.layout.fragment_home
+    private var endlessHandlerMyList: EndlessRecyclerOnScrollListener? = null
+    private var imageList = ArrayList<HitsItem>()
+    private lateinit var progressDialog: Dialog
+    private lateinit var myAdapter: ImagesAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +46,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() 
 
         viewModel?.apply {
             imagesLiveData.observe(viewLifecycleOwner) {
-                setupRecyclerView(it)
+                updateRecyclerView(it)
             }
             errorLiveData.observe(viewLifecycleOwner) {
                 Log.e("TAG", "observeData: $it")
@@ -45,18 +54,14 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() 
         }
     }
 
-    private fun setupRecyclerView(image: Image) {
+    private fun updateRecyclerView(image: Image) {
+        progressDialog.dismiss()
+        val start = imageList.size
+        imageList.addAll(image.hits.orEmpty())
+        myAdapter.submitList(imageList)
+        myAdapter.notifyItemRangeInserted(start,imageList.size)
+        endlessHandlerMyList?.totalPages = image.total.toLong()
 
-        binding.homeRv.apply {
-            val myAdapter = ImagesAdapter(onItemClick = {
-                navigateUserToDetailPage(it)
-            })
-
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = myAdapter
-
-            myAdapter.submitList(image.hits.orEmpty())
-        }
     }
 
     private fun navigateUserToDetailPage(it: HitsItem) {
@@ -68,10 +73,33 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, FragmentHomeViewModel>() 
 
     private fun initUI() {
         viewModel = mViewModelFactoryActivity.get(this, FragmentHomeViewModel::class)
+        progressDialog = materialSimpleProgressDialog(this.requireContext())
+        progressDialog.show()
         viewModel?.getImages()
         viewModel?.nextPageImage(FIRST_PAGE)
+        initRecyclerView()
 
 
+    }
+
+    private fun initRecyclerView() {
+        binding.homeRv.apply {
+            myAdapter = ImagesAdapter(onItemClick = {
+                navigateUserToDetailPage(it)
+            })
+            endlessHandlerMyList =
+                object : EndlessRecyclerOnScrollListener() {
+                    override fun onLoadMore(currentPage: Int) {
+                        Log.e("TAG", "onLoadMore: $currentPage" )
+                        progressDialog.show()
+                        viewModel?.nextPageImage(currentPage)
+                    }
+                }
+
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = myAdapter
+            addOnScrollListener(endlessHandlerMyList!!)
+        }
     }
 
 

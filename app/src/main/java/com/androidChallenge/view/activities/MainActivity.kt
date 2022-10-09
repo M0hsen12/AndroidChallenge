@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<MainActivityViewModel>
     override fun getLayoutId() = R.layout.activity_main
-    lateinit var navController: NavController
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +33,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
 
     private fun initUI() {
         viewModel = mViewModelFactoryActivity.get(this, MainActivityViewModel::class)
-//        Handler(Looper.getMainLooper()).postDelayed({
-////            val action =
-//            navController = Navigation.findNavController(this, R.id.my_nav_host_fragment)
-//////        NavigationUI.setupActionBarWithNavController(this, navController)
-//            navController.navigate(R.id.action_fragmentHome_to_fragmentLogin)
-//        },1000)
 
     }
 }

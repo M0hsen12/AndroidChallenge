@@ -24,7 +24,7 @@ class FragmentDetails : BaseFragment<FragmentDetailsBinding, FragmentDetailsView
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<FragmentDetailsViewModel>
     override fun getLayoutId() = R.layout.fragment_details
-    lateinit var imageItem: HitsItem
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,9 +34,9 @@ class FragmentDetails : BaseFragment<FragmentDetailsBinding, FragmentDetailsView
 
     private fun initUI() {
         viewModel = mViewModelFactoryActivity.get(this, FragmentDetailsViewModel::class)
-        imageItem = arguments?.getParcelable(ONCLICK_KEY_BUNDLE) ?: HitsItem()
-        binding.item = imageItem
-        Glide.with(this).load(imageItem.largeImageURL).into(binding.detailsImage)
+        viewModel?.setImageItem(arguments?.getParcelable(ONCLICK_KEY_BUNDLE) ?: HitsItem())
+        binding.item = viewModel?.getImageItem()
+        Glide.with(this).load(viewModel?.getImageItem()?.largeImageURL).into(binding.detailsImage)
     }
 
 

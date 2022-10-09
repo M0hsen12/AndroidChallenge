@@ -27,9 +27,7 @@ class FragmentSignupViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     _userRegistrationResultLiveData.postValue(it)
-                    Log.e("TAG", "registerUser: $it" )
                 }, {
-                    Log.e("TAG", "getUserData: Error $it" )
                     errorLiveData.postValue(it)
                 })
         )

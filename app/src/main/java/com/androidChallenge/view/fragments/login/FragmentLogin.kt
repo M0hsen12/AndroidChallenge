@@ -22,7 +22,7 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
     @Inject
     lateinit var mViewModelFactoryActivity: InjectionViewModelProvider<FragmentLoginViewModel>
     override fun getLayoutId() = R.layout.fragment_login
-    private val TAG = "AAA"
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,9 +40,13 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
             errorLiveData.observe(viewLifecycleOwner) {
                 if (it.message?.contains("password") == true)
                     handleWrongPassword()
+                if (it.message?.contains("Query returned empty") == true)
+                    handleNoUserFound()
             }
         }
     }
+
+
 
 
     private fun initUI() {
@@ -83,6 +87,11 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
             }
         }
 
+    }
+
+    private fun handleNoUserFound() {
+        binding.loginGroupErrorIndicator.showTheView()
+        binding.loginErrorIndicator.text = resources.getText(R.string.userNotFound)
     }
 
     private fun handleInvalidEmail() {

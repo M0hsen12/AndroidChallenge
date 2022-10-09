@@ -10,4 +10,5 @@
     <string name="register">register</string>
     <string name="please_enter_your_age">please enter your age</string>
     <string name="wrongPassword">password is not correct</string>
+    <string name="userNotFound">"no user found with this email  "</string>
 </resources>
